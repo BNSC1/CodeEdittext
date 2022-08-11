@@ -78,6 +78,12 @@ class CodeEditText(context: Context, attrs: AttributeSet?) : LinearLayout(contex
         }
     }
 
+    fun getInput() = StringBuilder().also{
+        editTexts.forEach { editText ->
+            it.append(editText.text)
+        }
+    }.toString()
+
     companion object {
         private const val ALLOWED_ALPHABETS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         private const val ALLOWED_NUMBERS = "0123456789"
