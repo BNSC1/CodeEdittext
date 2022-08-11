@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.core.widget.doOnTextChanged
 
 class CodeEditText(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
@@ -52,6 +53,26 @@ class CodeEditText(context: Context, attrs: AttributeSet?) : LinearLayout(contex
                         ALLOWED_ALPHABETS + ALLOWED_NUMBERS
                     } else ALLOWED_NUMBERS
                 )
+                isSingleLine = true
+                doOnTextChanged { t, start, before, count ->
+                    Log.d("test", "text $t, start $start, before $before, count $count")
+                    if (start > 0 && i < it.lastIndex) {
+                        setText("")
+                        append(t?.get(0).toString())
+                        it[i + 1].apply {
+                            if (t != null) {
+                                setText("")
+                                append(
+                                    t[start].toString()
+                                )
+                            }
+                            requestFocus()
+                        }
+                    } else if (before > 0 && i > 0) {
+                        it[i - 1].requestFocus()
+                    }
+                }
+
                 this@CodeEditText.addView(this)
             })
         }
