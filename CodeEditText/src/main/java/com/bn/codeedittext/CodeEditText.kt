@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.core.widget.doOnTextChanged
+import com.bn.CodeEditText.R
 
 class CodeEditText(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
