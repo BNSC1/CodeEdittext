@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CodeEdittext"
-include ':app'
+include ':CodeEditText'
